@@ -1,2 +1,73 @@
-# text-notification
-Add text notifications to your Code Ocean workflows.
+[![Code Ocean Logo](images/CO_logo_135x72.png)](http://codeocean.com/product)
+
+---
+
+# Text Notification Capsule
+
+---
+
+### Requirements
+
+1. Create a [Twilio](https://www.twilio.com/docs/usage/tutorials/how-to-use-your-free-trial-account#sign-up-for-your-free-twilio-trial) account
+2. Get a [Twilio phone number](https://www.twilio.com/docs/usage/tutorials/how-to-use-your-free-trial-account#get-your-first-twilio-phone-number) in your Twilio account
+3. Create the following [secrets](https://docs.codeocean.com/user-guide/secret-management-guide/adding-editing-a-secret-in-the-account-settings-page) in the Account Settings Page (select "Custom Key" when you get to the [Types of Secrets](https://docs.codeocean.com/user-guide/secret-management-guide/adding-editing-a-secret-in-the-account-settings-page#types-of-secrets) section):
+    - Twilio phone number
+    - Account SID (found in the [API keys & tokens](https://console.twilio.com/us1/account/keys-credentials/api-keys) section of your Twilio account. Make sure to [login to your Twilio account](https://www.twilio.com/login) first)
+    - Auth Token (found in the [API keys & tokens](https://console.twilio.com/us1/account/keys-credentials/api-keys) section of your Twilio account. Make sure to [login to your Twilio account](https://www.twilio.com/login) first)
+    - ![account info](images/account_info.png)
+4. If you initially used a [Twilio trial account](https://www.twilio.com/try-twilio) to evaluate this capsule, you will eventually need to [upgrade your Twilio account](https://console.twilio.com/us1/billing/manage-billing/upgrade) to a regular paid account to use this capsule in a production environment. More information about [Twilio SMS pricing](https://www.twilio.com/en-us/sms/pricing/us).
+
+---
+
+## Creating this capsule in *Code Ocean*
+
+1. Create a new capsule and select **copy from public git**
+    - ![copy from public git](images/copy_from_public_git.png)
+2. Enter the url for this github repo
+    - `https://github.com/codeocean/text-notification.git`
+3. Select a starter environment that has python available. The **Python (3.8.5, miniconda 4.9.2, jupyterlab 3.0.9)** starter environment that came preinstalled with *Code Ocean* will work but any starter environment with python will work.
+    - ![starter environment](images/starter_environment.png)
+4. Click on the gear icon next to `pip` and select `Edit Bulk`.
+    - ![pip edit bulk](images/pip_edit_bulk.png)
+5. Copy and paste the following packages into the `Edit Pip Packages` text field.
+    ```
+    code-ocean-aux-tools
+    twilio
+    ```
+    - ![pip edit bulk](images/pip_packages.png)
+6. Your environment is setup. The first time you run this capsule, the environment will need to build and you will find a file called `buildLog` in the results folder. Every subsequent time you run this capsule, the environment will not build and the capsule will simply pull the docker images from the registry.
+
+---
+
+### Setting Up This Capsule
+
+1. Setup this capsule by [attaching your secrets](https://docs.codeocean.com/user-guide/secret-management-guide/attaching-a-secret-to-a-capsule#attaching-a-secret-to-a-capsule)
+    - Go to the Environment UI and scroll to the bottom where the Secrets section is found
+    - [Attach your secrets](https://docs.codeocean.com/user-guide/secret-management-guide/attaching-a-secret-to-a-capsule#attaching-a-secret-to-a-capsule) to this capsule.
+
+---
+
+### How to use (testing this capsule)
+
+1. Click on App Builder on the left.
+2. Enter the phone number to send the text notification to.
+3. Enter the message to include in the text notification.
+4. Select the logging options if you would like to include some logging information with the output.
+5. Run this capsule to confirm it is setup correctly.
+
+---
+
+### How to use in a Pipeline
+
+This capsule can be used in a Code Ocean Pipeline to send a notification at any point in a Pipeline where you attach this capsule. This can be after a critical step in a pipeline completes or after the entire pipeline completes or both. You are able to add as many copies of this capsule as fits your needs.
+
+1. Add this text notification capsule to the Pipeline UI.
+2. Connect this capsule at the point in the pipeline where you want to be notified. In the example below, as soon as the `Create metadata` capsule completes, the text notification capsule will run and send the text notification.
+    - ![pipeline connecxtion](images/pipeline_connection.png)
+3. Adjust any settings for this text notification capsule using the Pipeline App Builder. You will likely want to set the phone number to send the notification to and also set the notification message.
+4. Repeat steps 1,2, and 3 to receive additional notifications at any other step in your pipeline.
+
+---
+
+[Code Ocean](https://codeocean.com/) is a cloud-based dry lab for scientific computing with a focus on guaranteeing reproducibility, collaboration and organizing scientific projects. Code Ocean automates best practices allowing users of the platform to focus on science yet follow best practices.<br /><br />
+[![Code Ocean Logo](images/CO_logo_68x36.png)](https://www.codeocean.com)
