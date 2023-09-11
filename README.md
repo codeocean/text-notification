@@ -21,6 +21,8 @@
 
 ## Creating this capsule in *Code Ocean*
 
+#### *Note: if this capsule was duplicated from the Apps Library, you can skip this entire section.The environment is already fully setup for you.
+
 1. Create a new capsule and select **copy from public git**
     - ![copy from public git](images/copy_from_public_git.png)
 2. Enter the url for this github repo
@@ -41,9 +43,28 @@
 
 ### Setting Up This Capsule
 
+#### Add Secrets To Capsule
+
+*Note: if this capsule was duplicated from the Apps Library, you can skip this section and procede directly to [attaching secrets](#attaching-secrets). The secrets are already in the environment UI, you just merely need to attach your secrets described in the next section.
+
+**Prerequisite**: you should have already created 3 secrets in your account settings page decribed above in the [requirements](#requirements) section.
+
+1. Scroll to the bottom of the Environment UI and click on the `Add secret to capsule` button and select `Custom Key`.
+    - ![add secret](images/add_secret_custom_key.png)
+2. Select you Twilio SID secret. You must select this particular secret first.
+3. Repeat step #1 and select Twilio Auth Token secret. You must select this particular secret 2nd.
+3. Repeat step #1 and select Twilio Phone secret. You must select this particular secret 3rd.
+4. Your secrets should look like the image below. The name of each secret is not important. However, the order of the secrets is. The value for the first secret must be your Twilio SID and so on.
+    - ![secrets order](images/custom_key_all.png)
+
+#### Attaching Secrets
+
+*Note: if you needed to do the steps above for [Add Secrets To Capsule](#add-secrets-to-capsule), then you don't need to complete the steps below because you have inherently already attached your secrets during the process.
+
 1. Setup this capsule by [attaching your secrets](https://docs.codeocean.com/user-guide/secret-management-guide/attaching-a-secret-to-a-capsule#attaching-a-secret-to-a-capsule)
     - Go to the Environment UI and scroll to the bottom where the Secrets section is found
     - [Attach your secrets](https://docs.codeocean.com/user-guide/secret-management-guide/attaching-a-secret-to-a-capsule#attaching-a-secret-to-a-capsule) to this capsule.
+    - Make sure you attach your secrets that correspond to the secrets setup in this capsule (e.g. ensure you attach your Twilio phone number secret for the capsule secret labelled Twilio Phone, etc.)
 
 ---
 
