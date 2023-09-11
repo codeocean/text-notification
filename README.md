@@ -18,6 +18,7 @@
 4. If you initially used a [Twilio trial account](https://www.twilio.com/try-twilio) to evaluate this capsule, you will eventually need to [upgrade your Twilio account](https://console.twilio.com/us1/billing/manage-billing/upgrade) to a regular paid account to use this capsule in a production environment. More information about [Twilio SMS pricing](https://www.twilio.com/en-us/sms/pricing/us).
 
 ---
+---
 
 ## Creating this capsule in *Code Ocean*
 
@@ -40,9 +41,10 @@
 6. Your environment is setup. The first time you run this capsule, the environment will need to build and you will find a file called `buildLog` in the results folder. Every subsequent time you run this capsule, the environment will not build and the capsule will simply pull the docker images from the registry.
 
 ---
+---
 
 ### Setting Up This Capsule
-
+---
 #### Add Secrets To Capsule
 
 *Note: if this capsule was duplicated from the Apps Library, you can skip this section and procede directly to [attaching secrets](#attaching-secrets). The secrets are already in the environment UI, you just merely need to attach your secrets described in the next section.
@@ -57,6 +59,7 @@
 4. Your secrets should look like the image below. The name of each secret is not important. However, the order of the secrets is. The value for the first secret must be your Twilio SID and so on.
     - ![secrets order](images/custom_key_all.png)
 
+---
 #### Attaching Secrets
 
 *Note: if you needed to do the steps above for [Add Secrets To Capsule](#add-secrets-to-capsule), then you don't need to complete the steps below because you have inherently already attached your secrets during the process.
@@ -67,10 +70,63 @@
     - Make sure you attach your secrets that correspond to the secrets setup in this capsule (e.g. ensure you attach your Twilio phone number secret for the capsule secret labelled Twilio Phone, etc.)
 
 ---
+#### Creating App Panel
+
+*Note: if you duplicated this capsule from the Apps Library, this capsule will already have an app panel which means you can skip this section.
+
+To effectively use this capsule to receive notifications in a pipeline, you will want to setup an App Panel here in the capsule so that it will be available in the pipeline you add this capsule to.
+
+
+1. Click on the `App Builder` tab on the lefthand side.
+    - ![app builder tab](images/app_builder_tab.png)
+
+2. Click on either the `Create App` button or the gear icon in the top right.
+    - ![App Builder Create](images/app_builder_create.png)
+
+3. Fill in the `Subtitle` and `Instructions` fields in the `General` section.
+    - ![app builder general](images/app_builder_general.png)
+
+4. Scroll down to the `Parameters` section and add a `text parameter` by clicking on the icon.
+    - ![app builder text parameter](images/app_builder_parameter1.png)
+
+5. Complete the `Phone` text parameter.
+    - Fill out the `Label`, `Default Value`, and `Description` fields. Make sure you select the digit `0` as the default value for this `Phone` text parameter.
+    - ![App Builder Phone](images/app_builder_parameter2.png)
+
+6. Add another text parameter and complete the `Message` text parameter.
+    - ![App Builder Message](images/app_builder_parameter3.png)
+
+7. Add a `list parameter`.
+    - ![App Builder List](images/app_builder_parameter_list.png)
+
+8. Complete the `Logging` list parameter.
+    - Fill out the `Label`, `List Values`, `Default Value`, and `Description` fields.
+    - ![App Builder Logging](images/app_builder_parameter4.png)
+
+9. Add another `List Parameter` and complete the `Logging Level` list parameter.
+    - The values needed for the `List Values` section are
+    ```
+    debug
+    info
+    warning
+    error
+    critical
+    ```
+    - Here is the description section if you want to use the same description as we are using
+    ```
+    The log level to start tracking (e.g. warning means that events listed under warning and greater severity will be logged). This parameter is only relevant if logging is turned on.
+    ```
+    - ![App Builder Log Level](images/app_builder_parameter5.png)
+
+10. Click on the `Finish` button at the bottom. Your App Panel is now setup.
+    - ![App Builder Finish](images/app_builder_finish.png)
+
+---
+---
 
 ### How to use (testing this capsule)
 
-1. Click on App Builder on the left.
+1. Click on App Builder on the left (If your App Builder is empty, see the section above for [Creating App Panel](#creating-app-panel)).
 2. Enter the phone number to send the text notification to.
 3. Enter the message to include in the text notification.
 4. Select the logging options if you would like to include some logging information with the output.
