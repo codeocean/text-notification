@@ -34,7 +34,7 @@
     - ![pip edit bulk](images/pip_edit_bulk.png)
 5. Copy and paste the following packages into the `Edit Pip Packages` text field.
     ```
-    code-ocean-aux-tools
+    code-ocean-aux-tools==1.1.0
     twilio
     ```
     - ![pip edit bulk](images/pip_packages.png)
