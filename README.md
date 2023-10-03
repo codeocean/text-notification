@@ -34,8 +34,8 @@
     - ![pip edit bulk](images/pip_edit_bulk.png)
 5. Copy and paste the following packages into the `Edit Pip Packages` text field.
     ```
-    code-ocean-aux-tools==1.1.0
-    twilio
+    code-ocean-aux-tools==1.1.3
+    twilio==8.8.0
     ```
     - ![pip edit bulk](images/pip_packages.png)
 6. Your environment is setup. The first time you run this capsule, the environment will need to build and you will find a file called `buildLog` in the results folder. Every subsequent time you run this capsule, the environment will not build and the capsule will simply pull the docker images from the registry.
@@ -101,6 +101,13 @@ To effectively use this capsule to receive notifications in a pipeline, you will
 
 8. Complete the `Logging` list parameter.
     - Fill out the `Label`, `List Values`, `Default Value`, and `Description` fields.
+    - The values needed for the `List Values` section are
+    ```
+    console
+    file
+    both
+    off
+    ```
     - ![App Builder Logging](images/app_builder_parameter4.png)
 
 9. Add another `List Parameter` and complete the `Logging Level` list parameter.
