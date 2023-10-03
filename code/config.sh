@@ -6,7 +6,6 @@ else
     set_log_msg "$*" --log-level "info"
 fi
 
-
 if [ -z "$1" ]; then
   phone="0"
 else
@@ -20,12 +19,18 @@ else
 fi
 
 if [ -z "$3" ]; then
-  export CO_LOG="false"
+  export CO_LOG_TYPE="OFF"
 else
-  if [ "$3" = "on" ]; then
-    export CO_LOG="true"
+  if [ "$3" = "console" ]; then
+    export CO_LOG_TYPE="CONSOLE"
+  elif [ $3 = "file" ]; then
+    export CO_LOG_TYPE="FILE"
+  elif [ $3 = "both" ]; then
+    export CO_LOG_TYPE="BOTH"
+  elif [ $3 = "off" ]; then
+    export CO_LOG_TYPE="OFF"
   else
-    export CO_LOG="false"
+    export CO_LOG_TYPE="OFF"
   fi
 fi
 
@@ -34,13 +39,13 @@ if [ -z "$4" ]; then
 else
   if [ "$4" = "debug" ]; then
     export CO_LOG_LEVEL="debug"
-  elif [ $3 = "info" ]; then
+  elif [ $4 = "info" ]; then
     export CO_LOG_LEVEL="info"
-  elif [ $3 = "warning" ]; then
+  elif [ $4 = "warning" ]; then
     export CO_LOG_LEVEL="warning"
-  elif [ $3 = "error" ]; then
+  elif [ $4 = "error" ]; then
     export CO_LOG_LEVEL="error"
-  elif [ $3 = "critical" ]; then
+  elif [ $4 = "critical" ]; then
     export CO_LOG_LEVEL="critical"
   else
     export CO_LOG_LEVEL="WARNING"
